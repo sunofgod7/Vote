@@ -27,6 +27,9 @@ contract Erc20VoteProject is ERC20, Ownable, ERC20Permit, ERC20Votes {
         uint256 value
     ) internal override(ERC20, ERC20Votes) {
         super._update(from, to, value);
+        if (delegates(to) == address(0)) {
+            _delegate(to, to);
+        }
     }
 
     function nonces(
