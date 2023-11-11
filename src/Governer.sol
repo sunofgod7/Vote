@@ -28,7 +28,7 @@ contract MyGovernor is
     }
 
     function votingDelay() public view override returns (uint256) {
-        return delay; // 0 day
+        return delay;
     }
 
     function votingPeriod() public view override returns (uint256) {
@@ -40,8 +40,6 @@ contract MyGovernor is
     ) public pure override returns (uint256) {
         return 0e18;
     }
-
-    // The following functions are overrides required by Solidity.
 
     function state(
         uint256 proposalId
@@ -99,5 +97,16 @@ contract MyGovernor is
 
     function _executor() internal view override(Governor) returns (address) {
         return super._executor();
+    }
+
+    function createProposal(
+        address[] memory _targets,
+        uint256[] memory _values,
+        bytes[] memory _calldatas,
+        string memory _description,
+        uint256 deadline
+    ) public {
+        setVotingPeriod(deadline);
+        propose(_targets, _values, _calldatas, _description);
     }
 }
