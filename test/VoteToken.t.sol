@@ -9,7 +9,7 @@ contract Erc20VoteTest is Test {
     address alice = address(0x5E11E7);
 
     function setUp() public {
-        vote = new Erc20VoteProject(msg.sender);
+        vote = new Erc20VoteProject();
     }
 
     function test_delegate() public {

@@ -7,11 +7,9 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
 
 contract Erc20VoteProject is ERC20, Ownable, ERC20Permit, ERC20Votes {
-    constructor(
-        address initialOwner
-    )
+    constructor()
         ERC20("Erc20VoteProject", "EVP")
-        Ownable(initialOwner)
+        Ownable(msg.sender)
         ERC20Permit("Erc20VoteProject")
     {
         _mint(msg.sender, 1000 * 10 ** decimals());
