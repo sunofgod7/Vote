@@ -12,7 +12,7 @@ contract Erc20VoteProject is ERC20, Ownable, ERC20Permit, ERC20Votes {
         Ownable(msg.sender)
         ERC20Permit("Erc20VoteProject")
     {
-        _mint(msg.sender, 1000 * 10 ** decimals());
+        _mint(msg.sender, 1000 * 10**decimals());
     }
 
     function mint(address to, uint256 amount) public onlyOwner {
@@ -30,9 +30,12 @@ contract Erc20VoteProject is ERC20, Ownable, ERC20Permit, ERC20Votes {
         }
     }
 
-    function nonces(
-        address owner
-    ) public view override(ERC20Permit, Nonces) returns (uint256) {
+    function nonces(address owner)
+        public
+        view
+        override(ERC20Permit, Nonces)
+        returns (uint256)
+    {
         return super.nonces(owner);
     }
 }

@@ -12,18 +12,20 @@ contract MyGovernor is
     GovernorVotes,
     Ownable
 {
-    constructor(
-        IVotes _token
-    ) Governor("MyGovernor") GovernorVotes(_token) Ownable(msg.sender) {}
+    constructor(IVotes _token)
+        Governor("MyGovernor")
+        GovernorVotes(_token)
+        Ownable(msg.sender)
+    {}
 
-    uint period = 50400; // 1 week
-    uint delay = 0;
+    uint256 period = 50400; // 1 week
+    uint256 delay = 0;
 
-    function setVotingPeriod(uint _period) public onlyOwner {
+    function setVotingPeriod(uint256 _period) public onlyOwner {
         period = _period;
     }
 
-    function setVotingDelay(uint _delay) public onlyOwner {
+    function setVotingDelay(uint256 _delay) public onlyOwner {
         delay = _delay;
     }
 
@@ -35,21 +37,30 @@ contract MyGovernor is
         return period;
     }
 
-    function quorum(
-        uint256 blockNumber
-    ) public pure override returns (uint256) {
+    function quorum(uint256 blockNumber)
+        public
+        pure
+        override
+        returns (uint256)
+    {
         return 0e18;
     }
 
-    function state(
-        uint256 proposalId
-    ) public view override(Governor) returns (ProposalState) {
+    function state(uint256 proposalId)
+        public
+        view
+        override(Governor)
+        returns (ProposalState)
+    {
         return super.state(proposalId);
     }
 
-    function proposalNeedsQueuing(
-        uint256 proposalId
-    ) public view override(Governor) returns (bool) {
+    function proposalNeedsQueuing(uint256 proposalId)
+        public
+        view
+        override(Governor)
+        returns (bool)
+    {
         return super.proposalNeedsQueuing(proposalId);
     }
 
